@@ -1,0 +1,11 @@
+{
+    "builders":[{
+        "type": "openstack",
+        "ssh_username": "ubuntu",
+        "image_name": "spark",
+        "source_image": "328bbe83-ac5c-4597-b23a-cc8e82c9e7fc",
+        "flavor": "r620_4_8",
+        "networks": ["de809c72-2835-4f8b-9a84-098bd8a5dc7f"],
+        "security_groups": ["default"]
+    }]
+}
