@@ -1,0 +1,35 @@
+{
+    "variables": {
+        "flavor": "r620_4_8"
+    },
+    "builders": [{
+        "type": "openstack",
+        "ssh_username": "ubuntu",
+        "image_name": "spark",
+        "source_image": "328bbe83-ac5c-4597-b23a-cc8e82c9e7fc",
+        "flavor": "{{user `flavor`}}",
+        "networks": ["de809c72-2835-4f8b-9a84-098bd8a5dc7f"],
+        "security_groups": ["default"]
+    }],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sleep 30",
+                "sudo apt-get update",
+                "sudo apt-get install -y openjdk-7-jdk",
+                "echo \"export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64\" >> ~/.bashrc",
+                "wget -O spark-1.5.0.tgz http://apache.arvixe.com/spark/spark-1.5.0/spark-1.5.0-bin-hadoop2.6.tgz",
+                "tar -zxvf spark-1.5.0.tgz",
+                "mv spark-1.5.0-bin-hadoop2.6 spark-1.5.0",
+                "ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''",
+                "cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "setup-master.sh",
+            "destination": "/home/ubuntu/setup-master.sh"
+        }
+    ]
+}
