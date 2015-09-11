@@ -2,6 +2,7 @@
 
 ## Overview
 The packer scripts are responsible for:
+
 1. Installing Java 7 on each cluster node
 2. Installing Spark 1.5 on each cluster node (with support for Hadoop 2.6)
 3. Setting up SSH keys on the cluster
@@ -10,6 +11,7 @@ The packer scripts are responsible for:
 It is also to explain the model from which the Packer scripts are based. Particularly, it is important to understand
 which parts are run as the image is built, what is on the image afterwards, then what is run by the user or WIP automated
 script.
+
 1. Image: When Packer builds the image, it installs Java, Spark, and generates SSH keys. Any machines that will be
 part of the cluster must use this image. Spark requires that the machines can use password-less SSH access to each
 other. This is accomplished by generating a single set of SSH keys at image build and putting the public key in the list

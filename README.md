@@ -12,5 +12,6 @@ takes a snapshot of the instance to make an image, destroys the instance, and pu
 environment.
 
 Currently, this repository contains
+
 1. Scripts for running a Spark cluster within `spark/`
 2. Scripts for running a Docker Swarm cluster within `docker/`
